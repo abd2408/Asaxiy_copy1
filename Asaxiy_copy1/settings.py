@@ -80,19 +80,27 @@ WSGI_APPLICATION = 'Asaxiy_copy1.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.config(
-        default='postgresql://postgres:parol@localhost:5432/asaxiy_db',
-        conn_max_age=600
+        default='postgresql://localhost/asaxiy_db',
+        conn_max_age=600,
     )
 }
 
 # DATABASES = {
+#     'default': dj_database_url.config(
+#         default='postgresql://postgres:parol@localhost:5432/asaxiy_db',
+#         conn_max_age=600
+#     )
+# }
+
+# DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': '',
-#         'USER': '',
-#         'PASSWORD': '',   # 3-bosqichdagi parol
-#         'HOST': 'localhost',
+#         'NAME': 'asaxiy_db',
+#         'USER': 'superuser',
+#         'PASSWORD': 'wNCbH7epSbGySM9zKGvbmnvLhciQ9uAH',   # 3-bosqichdagi parol
+#         'HOST': 'dpg-d9jqtkvlk1mc738nc5ig-a.oregon-postgres.render.com',
 #         'PORT': '5432',
+#         'OPTIONS': {'sslmode': 'require'},
 #     }
 # }
 
