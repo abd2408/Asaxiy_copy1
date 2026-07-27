@@ -1,0 +1,1 @@
+web: gunicorn Asaxiy_copy1.wsgi

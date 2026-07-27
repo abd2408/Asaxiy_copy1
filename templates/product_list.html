@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Asaxiy - Mahsulotlar</title>
+</head>
+<body>
+    <h1>Mahsulotlar ro'yxati</h1>
+    <ul>
+        {% for product in products %}
+            <li>
+                <!-- Link qo'shildi -->
+                <a href="{% url 'product_detail' product.pk %}">
+                    {{ product.name }}
+                </a>
+                — {{ product.price }} so'm
+            </li>
+        {% empty %}
+            <li>Hozircha hech qanday mahsulot yo'q.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

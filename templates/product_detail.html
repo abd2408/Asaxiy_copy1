@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ product.name }} - Asaxiy</title>
+</head>
+<body>
+    <a href="{% url 'product_list' %}">← Barcha mahsulotlarga qaytish</a>
+
+    <hr>
+
+    <h1>{{ product.name }}</h1>
+
+    <!-- Brend va Kategoriya -->
+    <p><strong>Kategoriya:</strong> {{ product.category.name }}</p>
+    {% if product.brand %}
+        <p><strong>Brend:</strong> {{ product.brand.name }}</p>
+        {% if product.brand.logo_url %}
+            <img src="{{ product.brand.logo_url }}" alt="{{ product.brand.name }}" width="100">
+        {% endif %}
+    {% endif %}
+
+    <p><strong>Artikul:</strong> {{ product.artikul }}</p>
+    <h2>Narxi: {{ product.price }} so'm</h2>
+    {% if product.is_available %}
+        <span style="color: green;">Sotuvda bor</span>
+    {% else %}
+        <span style="color: red;">Sotuvda yo'q</span>
+    {% endif %}
+
+    <hr>
+
+    <!-- Mahsulot rasmlari -->
+    <h3>Rasmlar</h3>
+    <div>
+        {% for img in images %}
+            <img src="{{ img.image_url }}" width="200" style="margin: 5px; {% if img.is_main %}border: 2px solid blue;{% endif %}" alt="">
+        {% empty %}
+            <p>Rasm yuklanmagan.</p>
+        {% endfor %}
+    </div>
+
+    <hr>
+
+    <!-- Tavsifi -->
+    <h3>Mahsulot haqida</h3>
+    <p>{{ product.description|default:"Tavsif berilmagan." }}</p>
+
+    <hr>
+
+    <!-- Xususiyatlari (Attributes) -->
+    <h3>Xususiyatlari</h3>
+    <ul>
+        {% for attr in attributes %}
+            <li><strong>{{ attr.attribute.name }}:</strong> {{ attr.value }}</li>
+        {% empty %}
+            <li>Xususiyatlar ko'rsatilmagan.</li>
+        {% endfor %}
+    </ul>
+
+    <hr>
+
+    <!-- Ombor va filiallardagi mavjudligi -->
+    <h3>Filiallardagi mavjudligi</h3>
+    <ul>
+        {% for stock in stocks %}
+            <li>{{ stock.branch.name }} ({{ stock.branch.city }}): {{ stock.quantity }} ta</li>
+        {% empty %}
+            <li>Mavjud emas.</li>
+        {% endfor %}
+    </ul>
+
+    <hr>
+
+    <!-- Sharhlar -->
+    <h3>Foydalanuvchilar sharhlari</h3>
+    {% for review in reviews %}
+        <div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 10px;">
+            <p><strong>{{ review.user.first_name }}</strong> — Baho: {{ review.rating }}/5</p>
+            {% if review.pros %}<p><strong>Afzalliklari:</strong> {{ review.pros }}</p>{% endif %}
+            {% if review.cons %}<p><strong>Kamchiliklari:</strong> {{ review.cons }}</p>{% endif %}
+            <p>{{ review.comment }}</p>
+        </div>
+    {% empty %}
+        <p>Hozircha sharhlar yo'q.</p>
+    {% endfor %}
+
+</body>
+</html>
