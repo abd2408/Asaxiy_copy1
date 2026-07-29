@@ -1,14 +1,52 @@
+{# First one with login url. DEPLOYED-BUT NOT LOGIN #}
+{# 1.0 \ 2.0 #}
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#    <title>Asaxiy - Mahsulotlar</title>#}
+{#</head>#}
+{#<body>#}
+{#    <li>#}
+{#        <a href="{% url 'login' %}">Login/Register</a>#}
+{#    </li>#}
+{#    <h1>Mahsulotlar ro'yxati</h1>#}
+{#    <ul>#}
+{#        {% for product in products %}#}
+{#            <li>#}
+{#                <!-- Link qo'shildi -->#}
+{#                <a href="{% url 'product_detail' product.pk %}">#}
+{#                    {{ product.name }}#}
+{#                </a>#}
+{#                — {{ product.price }} so'm#}
+{#            </li>#}
+{#        {% empty %}#}
+{#            <li>Hozircha hech qanday mahsulot yo'q.</li>#}
+{#        {% endfor %}#}
+{#    </ul>#}
+{#</body>#}
+{#</html>#}
+
+{# Profil uchun. 4.0 o'zgarishsiz. #}
+{# 3.0 \ 4.0 #}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <title>Asaxiy - Mahsulotlar</title>
 </head>
 <body>
+    <ul>
+        {% if user %}
+            <li><a href="{% url 'profile' %}">Profil ({{ user.first_name }})</a></li>
+            <li><a href="{% url 'logout' %}">Chiqish</a></li>
+        {% else %}
+            <li><a href="{% url 'login' %}">Login/Register</a></li>
+        {% endif %}
+    </ul>
+
     <h1>Mahsulotlar ro'yxati</h1>
     <ul>
         {% for product in products %}
             <li>
-                <!-- Link qo'shildi -->
                 <a href="{% url 'product_detail' product.pk %}">
                     {{ product.name }}
                 </a>

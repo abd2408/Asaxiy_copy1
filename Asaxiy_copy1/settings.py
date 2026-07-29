@@ -74,42 +74,30 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Asaxiy_copy1.wsgi.application'
 
+# SAYT UCHUN DATABASE
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-DATABASES = {
-    'default': dj_database_url.config(
-        default='postgresql://localhost/asaxiy_db',
-        conn_max_age=600,
-    )
-}
-
 # DATABASES = {
 #     'default': dj_database_url.config(
-#         default='postgresql://postgres:parol@localhost:5432/asaxiy_db',
-#         conn_max_age=600
+#         default='postgresql://localhost/asaxiy_db',
+#         conn_max_age=600,
 #     )
 # }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'asaxiy_db',
-#         'USER': 'superuser',
-#         'PASSWORD': 'wNCbH7epSbGySM9zKGvbmnvLhciQ9uAH',   # 3-bosqichdagi parol
-#         'HOST': 'dpg-d9jqtkvlk1mc738nc5ig-a.oregon-postgres.render.com',
-#         'PORT': '5432',
-#         'OPTIONS': {'sslmode': 'require'},
-#     }
-# }
+# LOCAL UCHUN DATABASE
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'asaxiy_db',
+        'USER': 'postgres',
+        'PASSWORD': 'abdulla',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
+}
 
 
 # Password validation

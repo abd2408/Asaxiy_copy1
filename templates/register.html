@@ -1,0 +1,24 @@
+{# (2.0) Login/register qo'shildi. 3.0 o'zgarishsiz. 4.0 o'zgarishsiz. #}
+{# 2.0 \ 3.0 \ 4.0 #}
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <title>Ro'yxatdan o'tish - Asaxiy</title>
+</head>
+<body>
+    <h1>Yangi hisob yaratish</h1>
+
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Ro'yxatdan o'tish</button>
+    </form>
+
+    <p>Profilingiz bormi? <a href="{% url 'login' %}">Kiring</a></p>
+</body>
+</html>
